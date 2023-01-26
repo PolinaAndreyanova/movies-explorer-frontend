@@ -1,0 +1,49 @@
+.header {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3C1F8;
+}
+
+.header__logo {
+  padding: 18px 0 18px 70px;
+}
+
+.header__navigation {
+  padding: 21px 70px 21px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header__registration-button {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  padding-right: 30px;
+  opacity: 1;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.header__registration-button:hover {
+  opacity: 0.8;
+}
+
+.header__enter-button {
+  border: none;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  opacity: 1;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.header__enter-button:hover {
+  opacity: 0.8;
+}

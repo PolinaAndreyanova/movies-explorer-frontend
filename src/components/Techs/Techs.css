@@ -1,0 +1,53 @@
+.techs {
+  padding: 100px 70px;
+  background-color: #F5F5F5;
+}
+
+.techs__header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  padding: 0 0 23px;
+  border-bottom: 1px solid black;
+}
+
+.techs__name {
+  margin: 90px auto 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+}
+
+.techs__description {
+  margin: 26px auto 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  max-width: 460px;
+}
+
+.techs__cards {
+  margin: 100px auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.techs__card {
+  margin: 0 10px 0 0;
+  background-color: #E8E8E8;
+  border-radius: 10px;
+  width: 90px; 
+  line-height: 60px;
+  text-align: center;
+}
+
+.techs__card:last-of-type {
+  margin-right: 0;
+}

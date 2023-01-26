@@ -1,0 +1,26 @@
+.navtab {
+  background-color: black;
+  color: white;
+}
+
+.navtab__links {
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navtab__link {
+  color: white;
+  text-decoration: none;
+  margin-right: 40px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.navtab__link:last-of-type {
+  margin-right: 0;
+}
+
+.navtab__link:hover {
+  opacity: 0.8;
+}

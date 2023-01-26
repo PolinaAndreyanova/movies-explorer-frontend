@@ -1,0 +1,42 @@
+.portfolio {
+  padding: 0 70px 125px;
+}
+
+.portfolio__header {
+  margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+}
+
+.portfolio__link {
+  margin: 20px 0 0;
+  display: block;
+  padding: 0 0 19px;
+  text-decoration: none;
+  border-bottom: 1px solid #E8E8E8;;
+  color: black;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  position: relative;
+}
+
+.portfolio__link:first-of-type {
+  margin: 50px 0 0;
+}
+
+.portfolio__link:hover {
+  border: 1px solid black;
+}
+
+.portfolio__link-image {
+  width: 29px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

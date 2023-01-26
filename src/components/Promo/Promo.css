@@ -1,0 +1,25 @@
+.promo {
+  text-align: center;
+  position: relative;
+  background-color: #F3C1F8;
+}
+
+.promo__logo {
+  margin: 82px auto 122px;
+}
+
+.promo__header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  align-self: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  max-width: 730px;
+  max-height: 120px;
+}
