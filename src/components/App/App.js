@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import Register from '../Register/Register';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
 
         <Route path='/signin'></Route>
 
-        <Route path='/signup'></Route>
+        <Route path='/signup'>
+          <Register />
+        </Route>
 
         <Route path='*'> <NotFoundPage /> </Route>
 

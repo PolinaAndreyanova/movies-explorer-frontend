@@ -1,14 +1,16 @@
 import './Header.css';
 
-import headerLogoPath from '../../images/header-logo.svg'
+import headerLogoPath from '../../images/logo.svg'
+
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header className='header'>
       <img src={headerLogoPath} alt="Логотип" className="header__logo" />
       <div className='header__navigation'>
-        <button type='button' className='header__registration-button'>Регистрация</button>
-        <button type='button' className='header__enter-button'>Войти</button>
+        <Link to='/signup' className='header__registration-button'>Регистрация</Link>
+        <Link to='/signin' className='header__enter-button'>Войти</Link>
       </div>
     </header>
   );

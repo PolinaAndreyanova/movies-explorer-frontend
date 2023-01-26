@@ -15,16 +15,22 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  display: flex;
+  flex-direction: row;
 }
 
 .header__registration-button {
+  display: block;
   border: none;
   padding: 0;
   background-color: transparent;
   padding-right: 30px;
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 32px;
+  color: black;
 }
 
 .header__registration-button:hover {
@@ -32,16 +38,18 @@
 }
 
 .header__enter-button {
+  display: block;
   border: none;
   padding: 0;
   background-color: #000000;
   color: #ffffff;
   width: 76px;
-  height: 32px;
+  line-height: 32px;
   border-radius: 3px;
   opacity: 1;
   transition: opacity 0.5s;
-  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .header__enter-button:hover {
