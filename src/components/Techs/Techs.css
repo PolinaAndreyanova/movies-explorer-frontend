@@ -43,11 +43,69 @@
   margin: 0 10px 0 0;
   background-color: #E8E8E8;
   border-radius: 10px;
-  width: 90px; 
+  width: 90px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 60px;
   text-align: center;
 }
 
 .techs__card:last-of-type {
   margin-right: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .techs {
+    padding: 90px 50px;
+  }
+
+  .techs__name {
+    margin-top: 80px;
+  }
+
+  .techs__description {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .techs__cards {
+    margin-top: 83px;
+  }
+
+  .techs__card {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .techs {
+    padding: 70px 18px;
+  }
+
+  .techs__header {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .techs__name {
+    margin-top: 60px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .techs__description {
+    margin-top: 24px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .techs__cards {
+    margin: 50px  40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 84px);
+    gap: 10px;
+  }
 }
