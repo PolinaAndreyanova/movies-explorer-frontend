@@ -79,3 +79,46 @@
 .login__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 768px) {
+  .login__content {
+    margin-top: 232px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .login__content {
+    margin-top: 56px;
+  }
+
+  .login__logo {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .login__header {
+    text-align: center;
+  }
+
+  .login__form {
+    margin: 80px auto 0;
+  }
+
+  .login__input {
+    width: 260px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .login__submit-button {
+    width: 260px;
+    height: 45px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .login__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

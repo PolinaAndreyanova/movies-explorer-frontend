@@ -37,3 +37,21 @@
 .not-found-page__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 630px) {
+  .not-found-page__header {
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .not-found-page__description {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .not-found-page__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
