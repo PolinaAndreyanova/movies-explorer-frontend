@@ -9,6 +9,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
   return (
@@ -26,7 +27,11 @@ function App() {
           <Footer />
         </Route>
 
-        <Route path='/saved-movies'></Route>
+        <Route path='/saved-movies'>
+          <Header loggedIn={true} />
+          <SavedMovies loading={false} />
+          <Footer />
+        </Route>
 
         <Route path='/profile'></Route>
 
@@ -38,7 +43,9 @@ function App() {
           <Register />
         </Route>
 
-        <Route path='*'> <NotFoundPage /> </Route>
+        <Route path='*'>
+          <NotFoundPage />
+        </Route>
 
       </Switch>
     </div>
