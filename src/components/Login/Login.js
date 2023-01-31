@@ -12,7 +12,7 @@ function Login() {
         <h1 className='login__header'>Рады видеть!</h1>
         <form method='get' name='login-form' className='login__form' noValidate>
           <div className='login__input-content'>
-            <h2 className='login__input-name'>E-mail</h2>
+            <label className='login__input-name'>E-mail</label>
             <input
               required
               id="email-input"
@@ -27,7 +27,7 @@ function Login() {
           </div>
 
           <div className='login__input-content'>
-            <h2 className='login__input-name'>Пароль</h2>
+            <label className='login__input-name'>Пароль</label>
             <input
               required
               id="password-input"

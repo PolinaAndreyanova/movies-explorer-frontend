@@ -12,7 +12,7 @@ function Register() {
         <h1 className='register__header'>Добро пожаловать!</h1>
         <form method='get' name='register-form' className='register__form' noValidate>
           <div className='register__input-content'>
-            <h2 className='register__input-name'>Имя</h2>
+            <label className='register__input-name'>Имя</label>
             <input
               required
               id="name-input"
@@ -27,7 +27,7 @@ function Register() {
           </div>
 
           <div className='register__input-content'>
-            <h2 className='register__input-name'>E-mail</h2>
+            <label className='register__input-name'>E-mail</label>
             <input
               required
               id="email-input"
@@ -42,7 +42,7 @@ function Register() {
           </div>
 
           <div className='register__input-content'>
-            <h2 className='register__input-name'>Пароль</h2>
+            <label className='register__input-name'>Пароль</label>
             <input
               required
               id="password-input"
