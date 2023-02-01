@@ -33,3 +33,15 @@
 .search-form__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 1024px) {
+  .search-form {
+    padding: 80px 30px 40px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .search-form {
+    padding: 80px 14px 40px;
+  }
+}

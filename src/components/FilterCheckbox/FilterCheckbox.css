@@ -1,5 +1,4 @@
 .filter-checkbox {
-  /* padding: 0 auto 70px; */
   margin: 0 70px;
   display: flex;
   justify-content: center;
@@ -48,4 +47,17 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+}
+
+@media screen and (max-width: 1024px) {
+  .filter-checkbox {
+    margin: 0 30px;
+    padding-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .filter-checkbox {
+    margin: 0 14px;
+  }
 }
