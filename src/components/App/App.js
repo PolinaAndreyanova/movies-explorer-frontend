@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
 
 function App() {
   return (
@@ -33,7 +34,10 @@ function App() {
           <Footer />
         </Route>
 
-        <Route path='/profile'></Route>
+        <Route path='/profile'>
+          <Header loggedIn={true} />
+          <Profile />
+        </Route>
 
         <Route path='/signin'>
           <Login />
