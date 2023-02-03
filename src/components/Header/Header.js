@@ -4,6 +4,7 @@ import headerLogoPath from '../../images/logo.svg';
 import headerAccountIconPath from '../../images/header-account-icon.svg';
 
 import { Link } from 'react-router-dom';
+import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
   return (
@@ -38,6 +39,7 @@ function Header(props) {
           }
         </div>
       </div>
+      <Navigation />
     </header>
   );
 }
