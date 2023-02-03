@@ -8,9 +8,9 @@ function Navigation() {
       <div className='navigation__content'>
         <button type='button' className='navigation__button'></button>
         <div className='navigation__links'>
-          <Link to='' className='navigation__link'>Главная</Link>
-          <Link to='' className='navigation__link'>Фильмы</Link>
-          <Link to='' className='navigation__link'>Сохранённые фильмы</Link>
+          <Link to='/' className='navigation__link'>Главная</Link>
+          <Link to='/movies' className='navigation__link'>Фильмы</Link>
+          <Link to='/saved-movies' className='navigation__link'>Сохранённые фильмы</Link>
           <div className='navigation__account-link'>
             <Link to='/profile' className='navigation__account-link-button'>Аккаунт</Link>
             <img src={navigationAccountIconPath} alt='Иконка' className='navigation__account-link-icon' />
