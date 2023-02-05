@@ -3,9 +3,8 @@ import './SearchForm.css';
 function SearchForm() {
   return (
     <section className='search-form'>
-      <form className='serch-form__form'>
+      <form method='get' name='search-form' className='serch-form__form' noValidate>
         <input
-          required
           id="film-input"
           type="text"
           className="search-form__input"
@@ -15,7 +14,7 @@ function SearchForm() {
           placeholder="Фильм"
         >
         </input>
-        <button type='button' className='search-form__button'></button>
+        <button type='submit' className='search-form__button'></button>
       </form>
     </section>
   )
