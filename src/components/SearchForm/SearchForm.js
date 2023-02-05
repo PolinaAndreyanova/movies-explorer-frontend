@@ -3,7 +3,7 @@ import './SearchForm.css';
 function SearchForm() {
   return (
     <section className='search-form'>
-      <form method='get' name='search-form' className='serch-form__form' noValidate>
+      <form method='get' name='search-form' className='search-form__form' noValidate>
         <input
           required
           id="film-input"

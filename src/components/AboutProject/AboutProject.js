@@ -22,7 +22,7 @@ function AboutProject() {
           <p className='about-project__shema-subtitle'>Back-end</p>
         </div>
         <div className='about-project__shema'>
-          <h2 className='about-project__shema-title about-project__shema-title__type_light'>4 недели</h2>
+          <h2 className='about-project__shema-title about-project__shema-title_type_light'>4 недели</h2>
           <p className='about-project__shema-subtitle'>Front-end</p>
         </div>
       </div>

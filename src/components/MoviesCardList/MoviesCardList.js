@@ -18,7 +18,7 @@ function MoviesCardList(props) {
         <MoviesCard />
         <MoviesCard />
       </section>
-      <button type='button' className='movies-card-list__button'>Ещё</button>
+      <button type='button' className='movies-card-list-button'>Ещё</button>
     </>
   );
 }
