@@ -5,6 +5,7 @@ function SearchForm() {
     <section className='search-form'>
       <form method='get' name='search-form' className='serch-form__form' noValidate>
         <input
+          required
           id="film-input"
           type="text"
           className="search-form__input"
