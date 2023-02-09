@@ -1,0 +1,39 @@
+.navtab {
+  background-color: black;
+  color: white;
+}
+
+.navtab__links {
+  list-style: none;
+  margin: 0;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navtab__link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: white;
+  margin-right: 40px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.navtab__link:last-of-type {
+  margin-right: 0;
+}
+
+.navtab__link:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 630px) {
+  .navtab__link {
+    font-size: 11px;
+    line-height: 16px;
+    margin-right: 24px;
+  }
+}

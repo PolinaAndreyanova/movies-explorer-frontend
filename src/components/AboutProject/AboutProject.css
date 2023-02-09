@@ -1,0 +1,139 @@
+.about-project {
+  padding: 110px 70px;
+}
+
+.about-project__header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  padding: 0 0 23px;
+  border-bottom: 1px solid black;
+}
+
+.about-project__two-columns {
+  margin: 70px 0 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.about-project__info {
+  margin: 0 40px 0 0;
+}
+
+.about-project__info:last-of-type {
+  margin: 0;
+}
+
+.about-project__info-title {
+  margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.about-project__info-subtitle {
+  margin: 26px 0 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.about-project__shema {
+  width: 20%;
+}
+
+.about-project__shema:last-of-type {
+  width: 80%;
+}
+
+.about-project__shema-title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  line-height: 36px;
+  background-color: black;
+  color: white;
+}
+
+.about-project__shema-title_type_light {
+  background-color: #F2F2F2;
+  color: black;
+}
+
+.about-project__shema-subtitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  margin: 14px 0 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+
+  .about-project__info {
+    margin-right: 30px;
+  }
+
+  .about-project__info-subtitle {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+
+  .about-project__header {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 28px;
+  }
+
+  .about-project__two-columns {
+    margin-top: 60px;
+    flex-direction: column;
+  }
+
+  .about-project__two-columns:last-of-type {
+    flex-direction: row;
+  }
+
+  .about-project__info {
+    margin: 0 0 56px 0;
+  }
+
+  .about-project__info-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-project__info-subtitle {
+    margin-top: 16px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__shema-title {
+    font-size: 11px;
+  }
+
+  .about-project__shema-subtitle {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
