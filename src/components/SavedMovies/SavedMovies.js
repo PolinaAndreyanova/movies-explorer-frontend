@@ -1,5 +1,4 @@
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
@@ -10,7 +9,6 @@ function SavedMovies(props) {
       <SearchForm />
       <FilterCheckbox />
       { props.loading && <Preloader /> }
-      <MoviesCardList />
     </main>
   )
 }

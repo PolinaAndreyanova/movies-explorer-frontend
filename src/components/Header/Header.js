@@ -4,7 +4,6 @@ import headerLogoPath from '../../images/logo.svg';
 import headerAccountIconPath from '../../images/header-account-icon.svg';
 
 import { Link } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
   return (
@@ -26,7 +25,7 @@ function Header(props) {
                 <Link to='/profile' className='header__account-link-button'>Аккаунт</Link>
                 <img src={headerAccountIconPath} alt='Иконка' className='header__account-link-icon' />
               </div>
-              <div className="header__hamburger-lines">
+              <div className="header__hamburger-lines" onClick={props.onMenuClick} >
                 <span className="header__hamburger-line"></span>
                 <span className="header__hamburger-line"></span>
                 <span className="header__hamburger-line"></span>
@@ -39,7 +38,6 @@ function Header(props) {
           }
         </div>
       </div>
-      <Navigation />
     </header>
   );
 }

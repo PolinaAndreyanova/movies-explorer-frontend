@@ -3,14 +3,32 @@ import './Login.css';
 import loginLogoPath from '../../images/logo.svg'
 
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-function Login() {
+function Login(props) {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    props.onLogin({ email, password });
+  }
+
   return (
     <section className='login'>
       <div className='login__content'>
         <img className='login__logo' alt='Логотип' src={loginLogoPath} />
         <h1 className='login__header'>Рады видеть!</h1>
-        <form method='get' name='login-form' className='login__form' noValidate>
+        <form method='get' name='login-form' className='login__form' noValidate onSubmit={handleSubmit}>
           <div className='login__input-content'>
             <label className='login__input-name'>E-mail</label>
             <input
@@ -22,6 +40,7 @@ function Login() {
               minLength="2"
               maxLength="40"
               placeholder="pochta@mail.ru"
+              onChange={handleChangeEmail}
             />
             <p className='login__input-error'></p>
           </div>
@@ -37,6 +56,7 @@ function Login() {
               minLength="2"
               maxLength="40"
               placeholder="••••"
+              onChange={handleChangePassword}
             />
             <p className='login__input-error'></p>
           </div>
