@@ -50,6 +50,37 @@ class MainApi {
       body: JSON.stringify({ name, email })
     }).then(this._checkResponse);
   }
+
+  getMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'GET',
+      headers: {
+        authorization: `${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(this._checkResponse);
+  }
+
+  likeFilm(film) {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: {
+        authorization: `${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(film)
+    }).then(this._checkResponse);
+  }
+
+  cancelLikeFilm(filmId) {
+    return fetch(`${this._baseUrl}/movies/${filmId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `${localStorage.getItem('jwt')}`,
+        "Content-Type": "application/json"
+      },
+    }).then(this._checkResponse);
+  }
 }
 
 const mainApi = new MainApi({

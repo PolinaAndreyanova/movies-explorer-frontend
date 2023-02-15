@@ -7,10 +7,10 @@ import './Movies.css';
 function Movies(props) {
   return(
     <main className='movies'>
-      <SearchForm />
-      <FilterCheckbox />
+      <SearchForm onSubmit={props.onSubmit} />
+      <FilterCheckbox onChecked={props.filterShortFilms} />
       { props.loading && <Preloader /> }
-      <MoviesCardList />
+      <MoviesCardList movies={props.movies} savedMovies={props.savedMovies} onFilmLike={props.onFilmLike} isSaved={false} />
     </main>
   )
 }

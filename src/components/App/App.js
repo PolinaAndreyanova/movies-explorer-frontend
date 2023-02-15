@@ -29,13 +29,42 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
 
-  const [isLoggedIn, setLoggedIn] = useState(false); // false
+  const [movies, setMovies] = useState([]);
+  const [searchingFilm, setSearchingFilm] = useState(null);
+  const [filterMovies, setFilterMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+  // const [filterChecboxMovies, setFilterChecboxMovies] = useState([]);
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
   const [isNavOpen, setNavOpen] = useState(false);
 
   const handleMenuClick = () => {
     setNavOpen(true);
+  }
+
+  const handleLikeFilm = (film) => {
+    console.log(savedMovies);
+    const isLiked = savedMovies.some(i => {
+      if (i.movieId === film.movieId) {
+        film._id = i._id;
+        return true;
+      }
+    });
+    console.log(film);
+    (!isLiked) ?
+      mainApi.likeFilm(film)
+        .then((newFilm) => {
+          setSavedMovies([...savedMovies, newFilm])
+        })
+        .catch(err => console.log(err)) :
+
+      mainApi.cancelLikeFilm(film._id)
+        .then((newFilm) => {
+          setSavedMovies(savedMovies.filter(c => c._id !== newFilm._id))
+        })
+        .catch(err => console.log(err));
   }
 
   const handleRegister = ({ name, email, password }) => {
@@ -79,6 +108,48 @@ function App() {
       .catch(err => console.log(err));
   }
 
+  const getAllMovies = () => {
+    moviesApi.getMovies()
+      .then((data) => {
+        setMovies(data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const getSavedMovies = () => {
+    mainApi.getMovies()
+      .then((data) => {
+        setSavedMovies(data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleSearchFilm = (film) => {
+    setSearchingFilm(film);
+
+    let newFilterMovies = [];
+
+    movies.forEach((movie) => {
+      if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
+    })
+
+    setFilterMovies(newFilterMovies);
+  }
+
+  const handleFilterShortFilms = (isChecked) => {
+    if (isChecked) {
+      let newFilterMovies = [];
+
+      filterMovies.forEach((movie) => {
+        if (movie.duration <= 40) newFilterMovies.push(movie);
+      })
+
+      setFilterMovies(newFilterMovies);
+    } else {
+      handleSearchFilm(searchingFilm);
+    }
+  }
+
   const handleTokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -96,6 +167,8 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
+    getAllMovies();
+    getSavedMovies();
   }, []);
 
   return (
@@ -114,7 +187,14 @@ function App() {
             components={
               <>
                 <Header loggedIn={isLoggedIn} onMenuClick={handleMenuClick} />
-                <Movies loading={isLoading} />
+                <Movies 
+                  loading={isLoading} 
+                  onSubmit={handleSearchFilm} 
+                  movies={filterMovies} 
+                  filterShortFilms={handleFilterShortFilms}
+                  savedMovies={savedMovies}
+                  onFilmLike={handleLikeFilm}
+                />
                 <Footer />
               </>
             }
@@ -126,7 +206,14 @@ function App() {
             components={
               <>
                 <Header loggedIn={isLoggedIn} onMenuClick={handleMenuClick} />
-                <SavedMovies loading={isLoading} />
+                <SavedMovies 
+                  loading={isLoading} 
+                  onSubmit={handleSearchFilm} 
+                  movies={filterMovies} 
+                  filterShortFilms={handleFilterShortFilms}
+                  savedMovies={savedMovies}
+                  onFilmLike={handleLikeFilm}
+                />
                 <Footer />
               </>
             }
@@ -157,9 +244,9 @@ function App() {
 
         </Switch>
 
-        <Navigation 
+        <Navigation
           isOpen={isNavOpen}
-          onClose={() => setNavOpen(false)} 
+          onClose={() => setNavOpen(false)}
         />
       </CurrentUserContext.Provider>
     </div >
