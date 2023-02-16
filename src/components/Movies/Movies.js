@@ -7,8 +7,8 @@ import './Movies.css';
 function Movies(props) {
   return(
     <main className='movies'>
-      <SearchForm onSubmit={props.onSubmit} />
-      <FilterCheckbox onChecked={props.filterShortFilms} />
+      <SearchForm onSubmit={props.onSubmit} isSaved={false} />
+      <FilterCheckbox onChecked={props.filterShortFilms} isSaved={false} />
       { props.loading && <Preloader /> }
       <MoviesCardList movies={props.movies} savedMovies={props.savedMovies} onFilmLike={props.onFilmLike} isSaved={false} />
     </main>

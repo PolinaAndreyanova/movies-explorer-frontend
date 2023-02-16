@@ -2,7 +2,7 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
   function handleChange(e) {
-    props.onChecked(e.target.checked);
+    props.onChecked(e.target.checked, props.isSaved);
   }
 
   return (

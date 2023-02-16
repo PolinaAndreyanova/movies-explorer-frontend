@@ -11,7 +11,7 @@ function SearchForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onSubmit(film);
+    props.onSubmit(film, props.isSaved);
   }
 
   return (

@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import mainApi from '../../utils/MainApi';
@@ -25,6 +25,7 @@ import Profile from '../Profile/Profile';
 import Navigation from '../Navigation/Navigation';
 
 function App() {
+  const { pathname } = useLocation();
   const history = useHistory();
 
   const [currentUser, setCurrentUser] = useState({});
@@ -32,6 +33,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [searchingFilm, setSearchingFilm] = useState(null);
   const [filterMovies, setFilterMovies] = useState([]);
+  const [filterSavedMovies, setFilterSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   // const [filterChecboxMovies, setFilterChecboxMovies] = useState([]);
 
@@ -120,33 +122,54 @@ function App() {
     mainApi.getMovies()
       .then((data) => {
         setSavedMovies(data);
+        setFilterSavedMovies(data);
       })
       .catch(err => console.log(err));
   }
 
-  const handleSearchFilm = (film) => {
+  const handleSearchFilm = (film, isSaved) => {
     setSearchingFilm(film);
 
     let newFilterMovies = [];
 
-    movies.forEach((movie) => {
-      if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
-    })
+    if (isSaved) {
+      savedMovies.forEach((movie) => {
+        if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
+      })
 
-    setFilterMovies(newFilterMovies);
-  }
-
-  const handleFilterShortFilms = (isChecked) => {
-    if (isChecked) {
-      let newFilterMovies = [];
-
-      filterMovies.forEach((movie) => {
-        if (movie.duration <= 40) newFilterMovies.push(movie);
+      setFilterSavedMovies(newFilterMovies);
+    } else {
+      movies.forEach((movie) => {
+        if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
       })
 
       setFilterMovies(newFilterMovies);
+    }
+  }
+
+  const handleFilterShortFilms = (isChecked, isSaved) => {
+    if (isChecked) {
+      let newFilterMovies = [];
+
+      if (isSaved) {
+        filterSavedMovies.forEach((movie) => {
+          if (movie.duration <= 40) newFilterMovies.push(movie);
+        })
+
+        setFilterSavedMovies(newFilterMovies);
+      } else {
+        filterMovies.forEach((movie) => {
+          if (movie.duration <= 40) newFilterMovies.push(movie);
+        })
+
+        setFilterMovies(newFilterMovies);
+      }
     } else {
-      handleSearchFilm(searchingFilm);
+      if (isSaved) {
+        setFilterSavedMovies(savedMovies);
+      } else {
+        handleSearchFilm(searchingFilm);
+      }
     }
   }
 
@@ -158,7 +181,7 @@ function App() {
           if (data) {
             setLoggedIn(true);
             setCurrentUser(data);
-            history.push('/movies');
+            history.push(pathname !== '/' ? pathname : '/movies');
           }
         })
         .catch(err => console.log(err));
@@ -187,10 +210,10 @@ function App() {
             components={
               <>
                 <Header loggedIn={isLoggedIn} onMenuClick={handleMenuClick} />
-                <Movies 
-                  loading={isLoading} 
-                  onSubmit={handleSearchFilm} 
-                  movies={filterMovies} 
+                <Movies
+                  loading={isLoading}
+                  onSubmit={handleSearchFilm}
+                  movies={filterMovies}
                   filterShortFilms={handleFilterShortFilms}
                   savedMovies={savedMovies}
                   onFilmLike={handleLikeFilm}
@@ -206,12 +229,13 @@ function App() {
             components={
               <>
                 <Header loggedIn={isLoggedIn} onMenuClick={handleMenuClick} />
-                <SavedMovies 
-                  loading={isLoading} 
-                  onSubmit={handleSearchFilm} 
-                  movies={filterMovies} 
+                <SavedMovies
+                  loading={isLoading}
+                  onSubmit={handleSearchFilm}
+                  movies={filterMovies}
                   filterShortFilms={handleFilterShortFilms}
                   savedMovies={savedMovies}
+                  filterSavedMovies={filterSavedMovies}
                   onFilmLike={handleLikeFilm}
                 />
                 <Footer />
