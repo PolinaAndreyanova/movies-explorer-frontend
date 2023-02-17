@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Switch, Route, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import mainApi from '../../utils/MainApi';
@@ -31,11 +31,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [movies, setMovies] = useState([]);
-  const [searchingFilm, setSearchingFilm] = useState(null);
-  const [filterMovies, setFilterMovies] = useState([]);
+  const [searchingFilm, setSearchingFilm] = useState(localStorage.getItem('searchingFilm'));
+  const [filterMovies, setFilterMovies] = useState(JSON.parse(localStorage.getItem('filterMovies')));
   const [filterSavedMovies, setFilterSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  // const [filterChecboxMovies, setFilterChecboxMovies] = useState([]);
 
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -47,14 +46,13 @@ function App() {
   }
 
   const handleLikeFilm = (film) => {
-    console.log(savedMovies);
     const isLiked = savedMovies.some(i => {
       if (i.movieId === film.movieId) {
         film._id = i._id;
         return true;
       }
     });
-    console.log(film);
+
     (!isLiked) ?
       mainApi.likeFilm(film)
         .then((newFilm) => {
@@ -100,6 +98,8 @@ function App() {
   const handleLogout = () => {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
+    localStorage.removeItem('searchingFilm');
+    localStorage.removeItem('filterMovies')
   };
 
   const handleUpdateProfile = ({ name, email }) => {
@@ -129,7 +129,6 @@ function App() {
 
   const handleSearchFilm = (film, isSaved) => {
     setSearchingFilm(film);
-
     let newFilterMovies = [];
 
     if (isSaved) {
@@ -139,11 +138,13 @@ function App() {
 
       setFilterSavedMovies(newFilterMovies);
     } else {
+      localStorage.setItem('searchingFilm', film);
       movies.forEach((movie) => {
         if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
       })
-
+      
       setFilterMovies(newFilterMovies);
+      localStorage.setItem('filterMovies', JSON.stringify(newFilterMovies));
     }
   }
 
@@ -163,6 +164,7 @@ function App() {
         })
 
         setFilterMovies(newFilterMovies);
+        localStorage.setItem('filterMovies', JSON.stringify(newFilterMovies));
       }
     } else {
       if (isSaved) {
@@ -213,7 +215,7 @@ function App() {
                 <Movies
                   loading={isLoading}
                   onSubmit={handleSearchFilm}
-                  movies={filterMovies}
+                  movies={JSON.parse(localStorage.getItem('filterMovies'))}
                   filterShortFilms={handleFilterShortFilms}
                   savedMovies={savedMovies}
                   onFilmLike={handleLikeFilm}
@@ -263,7 +265,7 @@ function App() {
           </Route>
 
           <Route path='*'>
-            <NotFoundPage />
+            <NotFoundPage goBack={() => history.goBack()} />
           </Route>
 
         </Switch>

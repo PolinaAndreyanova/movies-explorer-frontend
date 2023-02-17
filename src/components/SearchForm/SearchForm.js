@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './SearchForm.css';
 
 function SearchForm(props) {
-  const [film, setFilm] = useState(null);
+  const [film, setFilm] = useState(localStorage.getItem('searchingFilm'));
 
   function handleChangeFilm(e) {
     setFilm(e.target.value);
@@ -27,8 +27,10 @@ function SearchForm(props) {
           maxLength="40"
           placeholder="Фильм"
           onChange={handleChangeFilm}
+          defaultValue={props.isSaved ? '' : localStorage.getItem('searchingFilm')}
         >
         </input>
+        <p className='search-form__input-error'>{film === '' && 'Нужно ввести ключевое слово'}</p>
         <button type='submit' className='search-form__button' onClick={handleSubmit}></button>
       </form>
     </section>

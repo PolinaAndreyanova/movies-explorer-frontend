@@ -3,24 +3,16 @@ import './Login.css';
 import loginLogoPath from '../../images/logo.svg'
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useFormWithValidation } from '../../utils/Validation';
 
 function Login(props) {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onLogin({ email, password });
+    props.onLogin({ email: values.email, password: values.password });
+    resetForm();
   }
 
   return (
@@ -40,9 +32,10 @@ function Login(props) {
               minLength="2"
               maxLength="40"
               placeholder="pochta@mail.ru"
-              onChange={handleChangeEmail}
+              onChange={handleChange}
+              value={values.email || ''}
             />
-            <p className='login__input-error'></p>
+            <p className='login__input-error'>{errors.email}</p>
           </div>
 
           <div className='login__input-content'>
@@ -56,11 +49,12 @@ function Login(props) {
               minLength="2"
               maxLength="40"
               placeholder="••••"
-              onChange={handleChangePassword}
+              onChange={handleChange}
+              value={values.password || ''}
             />
-            <p className='login__input-error'></p>
+            <p className='login__input-error'>{errors.password}</p>
           </div>
-          <button type="submit" className="login__submit-button">Войти</button>
+          <button type="submit" className={`login__submit-button${!isValid ? ' login__submit-button_disabled' : ''}`} disabled={!isValid}>Войти</button>
           <Link to="/signup" className="login__button">Ещё не зарегистрированы? Регистрация</Link>
         </form>
       </div>

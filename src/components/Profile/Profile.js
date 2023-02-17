@@ -1,24 +1,17 @@
-import { useState, useContext} from 'react';
+import { useContext} from 'react';
 import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useFormWithValidation } from '../../utils/Validation';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name)
-  const [email, setEmail] = useState(currentUser.email);
-
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdate({ name, email });
+    props.onUpdate({ name: values.name, email: values.email });
+    resetForm();
   }
 
   return (
@@ -36,11 +29,11 @@ function Profile(props) {
               name="name"
               minLength="2"
               maxLength="40"
-              defaultValue={currentUser.name}
-              onChange={handleChangeName}
+              onChange={handleChange}
+              value={values.name || currentUser.name}
             />
           </div>
-          <p className='profile__input-error'></p>
+          <p className='profile__input-error'>{errors.name}</p>
           <span className='profile__line'></span>
           <div className='profile__input-content'>
             <label className='profile__input-name'>E-mail</label>
@@ -52,12 +45,12 @@ function Profile(props) {
               name="email"
               minLength="2"
               maxLength="40"
-              defaultValue={currentUser.email}
-              onChange={handleChangeEmail}
+              onChange={handleChange}
+              value={values.email || currentUser.email}
             />
           </div>
-          <p className='profile__input-error'></p>
-          <button type="submit" className="profile__submit-button">Редактировать</button>
+          <p className='profile__input-error'>{errors.email}</p>
+          <button type="submit" className={`profile__submit-button${!isValid ? ' profile__submit-button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
           <button type="button" className="profile__button" onClick={props.logout}>Выйти из аккаунта</button>
         </form>
       </div>
