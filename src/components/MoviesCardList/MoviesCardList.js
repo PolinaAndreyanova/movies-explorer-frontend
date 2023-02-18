@@ -24,7 +24,7 @@ function MoviesCardList(props) {
             isSaved={props.isSaved}
           />
         )) :
-        <p className='movies-card-list__searchin-result'>Ничего не найдено</p>
+        <p className='movies-card-list__searching-result'>{((props.isSaved && localStorage.getItem('isSavedSearched')) || (!props.isSaved && localStorage.getItem('isSearched'))) && 'Ничего не найдено'}</p>
       }
     </section>
   );

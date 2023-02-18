@@ -63,7 +63,7 @@ function Movies(props) {
   return (
     <main className='movies'>
       <SearchForm onSubmit={props.onSubmit} isSaved={false} />
-      <FilterCheckbox onChecked={props.filterShortFilms} isSaved={false} />
+      <FilterCheckbox onChecked={props.filterShortFilms} isSaved={false} isChecked={props.isCheckboxChecked} />
       {props.loading && <Preloader />}
       <MoviesCardList movies={visibleMovies} savedMovies={props.savedMovies} onFilmLike={props.onFilmLike} isSaved={false} />
       {(props.movies !== null && countVisibleMovies !== maxCount) &&

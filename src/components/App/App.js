@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import mainApi from '../../utils/MainApi';
@@ -38,6 +38,7 @@ function App() {
 
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
   const [isNavOpen, setNavOpen] = useState(false);
 
@@ -99,7 +100,11 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
     localStorage.removeItem('searchingFilm');
-    localStorage.removeItem('filterMovies')
+    localStorage.removeItem('filterMovies');
+    localStorage.removeItem('isCheckboxChecked');
+
+    localStorage.removeItem('isSavedSearched');
+    localStorage.removeItem('isSearched');
   };
 
   const handleUpdateProfile = ({ name, email }) => {
@@ -132,23 +137,30 @@ function App() {
     let newFilterMovies = [];
 
     if (isSaved) {
+      localStorage.setItem('isSavedSearched', true);
+
       savedMovies.forEach((movie) => {
         if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
       })
 
       setFilterSavedMovies(newFilterMovies);
     } else {
+      localStorage.setItem('isSearched', true);
       localStorage.setItem('searchingFilm', film);
+
       movies.forEach((movie) => {
         if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
       })
-      
+
       setFilterMovies(newFilterMovies);
       localStorage.setItem('filterMovies', JSON.stringify(newFilterMovies));
     }
   }
 
   const handleFilterShortFilms = (isChecked, isSaved) => {
+    // setCheckboxChecked(isChecked);
+    // localStorage.setItem('isCheckboxChecked', isChecked);
+
     if (isChecked) {
       let newFilterMovies = [];
 
@@ -159,6 +171,9 @@ function App() {
 
         setFilterSavedMovies(newFilterMovies);
       } else {
+        setCheckboxChecked(isChecked);
+        localStorage.setItem('isCheckboxChecked', isChecked);
+
         filterMovies.forEach((movie) => {
           if (movie.duration <= 40) newFilterMovies.push(movie);
         })
@@ -170,6 +185,8 @@ function App() {
       if (isSaved) {
         setFilterSavedMovies(savedMovies);
       } else {
+        setCheckboxChecked(isChecked);
+        localStorage.setItem('isCheckboxChecked', isChecked);
         handleSearchFilm(searchingFilm);
       }
     }
@@ -219,6 +236,7 @@ function App() {
                   filterShortFilms={handleFilterShortFilms}
                   savedMovies={savedMovies}
                   onFilmLike={handleLikeFilm}
+                  isCheckboxChecked={JSON.parse(localStorage.getItem('isCheckboxChecked'))}
                 />
                 <Footer />
               </>
@@ -257,11 +275,13 @@ function App() {
           />
 
           <Route path='/signin'>
-            <Login onLogin={handleLogin} />
+            {!isLoggedIn ? <Login onLogin={handleLogin} /> : <Redirect to='/' />}
+            {/* <Login onLogin={handleLogin} /> */}
           </Route>
 
           <Route path='/signup'>
-            <Register onRegister={handleRegister} />
+            {!isLoggedIn ? <Register onRegister={handleRegister} /> : <Redirect to='/' />}
+            {/* <Register onRegister={handleRegister} /> */}
           </Route>
 
           <Route path='*'>

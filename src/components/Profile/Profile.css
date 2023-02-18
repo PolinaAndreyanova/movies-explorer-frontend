@@ -86,7 +86,7 @@
 
 .profile__submit-button_disabled {
   cursor: default;
-  opacity: 0.8;
+  color: #CCCCCC;
 }
 
 .profile__button {
