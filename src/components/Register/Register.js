@@ -19,7 +19,7 @@ function Register(props) {
   return (
     <section className='register'>
       <div className='register__content'>
-        <img className='register__logo' alt='Логотип' src={registerLogoPath} />
+        <Link to='/'><img className='register__logo' alt='Логотип' src={registerLogoPath} /></Link>
         <h1 className='register__header'>Добро пожаловать!</h1>
         <form method='get' name='register-form' className='register__form' noValidate onSubmit={handleSubmit}>
           <div className='register__input-content'>

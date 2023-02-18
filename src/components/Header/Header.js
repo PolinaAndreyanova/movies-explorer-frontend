@@ -3,12 +3,14 @@ import './Header.css';
 import headerLogoPath from '../../images/logo.svg';
 import headerAccountIconPath from '../../images/header-account-icon.svg';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {
+  const { pathname } = useLocation();
+
   return (
-    <header className='header' style={!props.loggedIn ? { backgroundColor: "#F3C1F8" } : { backgroundColor: "white" }}>
-      <img src={headerLogoPath} alt="Логотип" className="header__logo" />
+    <header className='header' style={pathname === '/' ? { backgroundColor: "#F3C1F8" } : { backgroundColor: "white" }}>
+      <Link to='/'><img src={headerLogoPath} alt="Логотип" className="header__logo" /></Link>
       <div className='header__navigation'>
         <div className='header__film-pages-navigation'>
           {props.loggedIn &&

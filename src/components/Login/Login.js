@@ -18,7 +18,7 @@ function Login(props) {
   return (
     <section className='login'>
       <div className='login__content'>
-        <img className='login__logo' alt='Логотип' src={loginLogoPath} />
+        <Link to='/'><img className='login__logo' alt='Логотип' src={loginLogoPath} /></Link>
         <h1 className='login__header'>Рады видеть!</h1>
         <form method='get' name='login-form' className='login__form' noValidate onSubmit={handleSubmit}>
           <div className='login__input-content'>
