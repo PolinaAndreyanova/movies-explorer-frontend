@@ -5,6 +5,7 @@ import registerLogoPath from '../../images/logo.svg'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useFormWithValidation } from '../../utils/Validation';
+import validator from 'validator';
 
 function Register(props) {
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
@@ -12,8 +13,10 @@ function Register(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onRegister({ name: values.name, email: values.email, password: values.password });
-    resetForm();
+    if (validator.isEmail(values.email)) {
+      props.onRegister({ name: values.name, email: values.email, password: values.password });
+      resetForm();
+    } 
   }
 
   return (
@@ -53,7 +56,7 @@ function Register(props) {
               onChange={handleChange}
               value={values.email || ''}
             />
-            <p className='register__input-error'>{errors.email}</p>
+            <p className='register__input-error'>{errors.email === '' ? ((!validator.isEmail(values.email) ? 'Email невалиден' : '')) : errors.email}</p>
           </div>
 
           <div className='register__input-content'>
@@ -72,7 +75,8 @@ function Register(props) {
             />
             <p className='register__input-error'>{errors.password}</p>
           </div>
-          <button type="submit" className={`register__submit-button${!isValid ? ' register__submit-button_disabled' : ''}`} disabled={!isValid}>Зарегистрироваться</button>
+          <p className='register__error'>{props.error}</p>
+          <button type="submit" className={`register__submit-button${!(isValid && validator.isEmail(values.email)) ? ' register__submit-button_disabled' : ''}`} disabled={!isValid}>Зарегистрироваться</button>
           <Link to="/signin" className="register__button">Уже зарегистрированы? Войти</Link>
         </form>
       </div>

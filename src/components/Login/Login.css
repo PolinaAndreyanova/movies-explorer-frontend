@@ -57,6 +57,14 @@
   /* visibility: hidden; */
 }
 
+.login__error {
+  margin: 0;
+  text-align: center;
+  color: #FF4062;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .login__submit-button {
   margin: 179px 0 0;
   width: 396px;
@@ -120,6 +128,10 @@
     width: 260px;
     font-size: 13px;
     line-height: 16px;
+  }
+
+  .login__input-error {
+    max-width: 260px;
   }
 
   .login__submit-button {

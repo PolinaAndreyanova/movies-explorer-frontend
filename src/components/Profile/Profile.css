@@ -64,6 +64,14 @@
   margin-bottom: 17px;
 }
 
+.profile__error {
+  margin: 0;
+  text-align: center;
+  color: #FF4062;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .profile__submit-button {
   display: block;
   margin: 220px auto 0;

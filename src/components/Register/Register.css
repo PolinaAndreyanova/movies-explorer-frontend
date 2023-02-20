@@ -47,6 +47,7 @@
 }
 
 .register__input-error {
+  max-width: 396px;
   margin: 10px 0 0;
   font-style: normal;
   font-weight: 400;
@@ -54,6 +55,14 @@
   min-height: 12px;
   color: #FF4062;
   /* visibility: hidden; */
+}
+
+.register__error {
+  margin: 0;
+  text-align: center;
+  color: #FF4062;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .register__submit-button {
@@ -121,6 +130,10 @@
     width: 260px;
     font-size: 13px;
     line-height: 16px;
+  }
+
+  .register__input-error {
+    max-width: 260px;
   }
 
   .register__submit-button {

@@ -42,6 +42,8 @@ function App() {
 
   const [isNavOpen, setNavOpen] = useState(false);
 
+  const [error, setError] = useState(null);
+
   const handleMenuClick = () => {
     setNavOpen(true);
   }
@@ -57,18 +59,23 @@ function App() {
     (!isLiked) ?
       mainApi.likeFilm(film)
         .then((newFilm) => {
-          setSavedMovies([...savedMovies, newFilm])
+          setSavedMovies([...savedMovies, newFilm]);
+          setFilterSavedMovies([...savedMovies, newFilm]);
         })
         .catch(err => console.log(err)) :
 
       mainApi.cancelLikeFilm(film._id)
         .then((newFilm) => {
-          setSavedMovies(savedMovies.filter(c => c._id !== newFilm._id))
+          setSavedMovies(savedMovies.filter(c => c._id !== newFilm._id));
+          setFilterSavedMovies(savedMovies.filter(c => c._id !== newFilm._id));
         })
         .catch(err => console.log(err));
+
+    // getSavedMovies();
   }
 
   const handleRegister = ({ name, email, password }) => {
+
     mainApi.register({ name, email, password })
       .then((data) => {
         if (data) {
@@ -77,12 +84,22 @@ function App() {
           history.push('/movies');
         }
       })
-      .catch(err => console.log(err));
+      .catch(data => data.then(err => setError(err.message)));
   };
 
   const handleAuthenticate = (data) => {
+    mainApi.getContent(data.jwt)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch(data => data.then(err => setError(err.message)));
+
     localStorage.setItem('jwt', data.jwt)
     setLoggedIn(true);
+
+    getAllMovies();
+    getSavedMovies();
+
     history.push('/movies');
   }
 
@@ -93,11 +110,13 @@ function App() {
           handleAuthenticate(data);
         }
       })
-      .catch(err => console.log(err));
+      .catch(data => data.then(err => setError(err.message)));
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
+    setCurrentUser({});
+
     localStorage.removeItem('jwt');
     localStorage.removeItem('searchingFilm');
     localStorage.removeItem('filterMovies');
@@ -112,7 +131,7 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch(err => console.log(err));
+      .catch(data => data.then(err => setError(err.message)));
   }
 
   const getAllMovies = () => {
@@ -204,14 +223,18 @@ function App() {
           }
         })
         .catch(err => console.log(err));
+
+      getSavedMovies();
     }
   };
 
   useEffect(() => {
     handleTokenCheck();
-    getAllMovies();
-    getSavedMovies();
   }, []);
+
+  useEffect(() => {
+    setError('');
+  }, [pathname]);
 
   return (
     <div className="app">
@@ -254,6 +277,7 @@ function App() {
                   onSubmit={handleSearchFilm}
                   movies={filterMovies}
                   filterShortFilms={handleFilterShortFilms}
+                  // checkSavedMovies={}
                   savedMovies={savedMovies}
                   filterSavedMovies={filterSavedMovies}
                   onFilmLike={handleLikeFilm}
@@ -269,18 +293,18 @@ function App() {
             components={
               <>
                 <Header loggedIn={isLoggedIn} onMenuClick={handleMenuClick} />
-                <Profile logout={handleLogout} onUpdate={handleUpdateProfile} />
+                <Profile logout={handleLogout} onUpdate={handleUpdateProfile} error={error} />
               </>
             }
           />
 
           <Route path='/signin'>
-            {!isLoggedIn ? <Login onLogin={handleLogin} /> : <Redirect to='/' />}
+            {!isLoggedIn ? <Login onLogin={handleLogin} error={error} /> : <Redirect to='/' />}
             {/* <Login onLogin={handleLogin} /> */}
           </Route>
 
           <Route path='/signup'>
-            {!isLoggedIn ? <Register onRegister={handleRegister} /> : <Redirect to='/' />}
+            {!isLoggedIn ? <Register onRegister={handleRegister} error={error} /> : <Redirect to='/' />}
             {/* <Register onRegister={handleRegister} /> */}
           </Route>
 

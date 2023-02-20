@@ -2,6 +2,7 @@ import { useContext} from 'react';
 import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/Validation';
+import validator from 'validator';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
@@ -10,8 +11,10 @@ function Profile(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdate({ name: values.name, email: values.email });
-    resetForm();
+    if (validator.isEmail(values.email)) {
+      props.onUpdate({ name: values.name, email: values.email });
+      resetForm();
+    }
   }
 
   return (
@@ -49,8 +52,9 @@ function Profile(props) {
               value={values.email || currentUser.email}
             />
           </div>
-          <p className='profile__input-error'>{errors.email}</p>
-          <button type="submit" className={`profile__submit-button${!isValid ? ' profile__submit-button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
+          <p className='profile__input-error'>{errors.email === '' ? ((!validator.isEmail(values.email) ? 'Email невалиден' : '')) : errors.email}</p>
+          <p className='profile__error'>{props.error}</p>
+          <button type="submit" className={`profile__submit-button${!(isValid && validator.isEmail(values.email)) ? ' profile__submit-button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
           <button type="button" className="profile__button" onClick={props.logout}>Выйти из аккаунта</button>
         </form>
       </div>

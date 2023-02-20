@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 //хук управления формой
 export function useForm() {
@@ -16,7 +17,8 @@ export function useForm() {
 
 //хук управления формой и валидации формы
 export function useFormWithValidation() {
-  const [values, setValues] = React.useState({});
+  const currentUser = useContext(CurrentUserContext);
+  const [values, setValues] = React.useState({email: currentUser.email});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
 
