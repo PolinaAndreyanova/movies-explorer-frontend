@@ -136,6 +136,13 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.header__hamburger-lines:hover {
+  opacity: 0.8;
 }
 
 .header__hamburger-line {

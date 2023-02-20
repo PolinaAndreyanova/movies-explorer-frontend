@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cde5bdb0.css",
+    "main.js": "/static/js/main.1e7cf5f3.js",
+    "static/js/787.5fef94a4.chunk.js": "/static/js/787.5fef94a4.chunk.js",
+    "static/media/about-me-image.jpg": "/static/media/about-me-image.265a08167a7f428b562e.jpg",
+    "static/media/Inter-Medium.woff": "/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff": "/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-Medium.woff2": "/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Black.woff2": "/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-Regular.woff2": "/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/promo-logo.svg": "/static/media/promo-logo.070dbbcf39b5dda39af9d74733899d8d.svg",
+    "static/media/logo.svg": "/static/media/logo.9e485548c7827b53e925ab8bedc3d7ce.svg",
+    "index.html": "/index.html",
+    "static/media/header-account-icon.svg": "/static/media/header-account-icon.c146d569c3515f07708c474198b4b6ee.svg",
+    "static/media/movies-card-favourite-button.svg": "/static/media/movies-card-favourite-button.78377d0a6046af6777b8.svg",
+    "static/media/movies-card-favourite-button-active.svg": "/static/media/movies-card-favourite-button-active.ab2c9ec599c920bd11ff.svg",
+    "static/media/movies-card-favourite-button-delete.svg": "/static/media/movies-card-favourite-button-delete.5ba7eaafef688f311898.svg",
+    "static/media/close-button.svg": "/static/media/close-button.ed1ea77f63f5bdc8c183.svg",
+    "static/media/search-form-button.svg": "/static/media/search-form-button.1f023707cf49187ca830.svg",
+    "static/media/about-me-arrow.svg": "/static/media/about-me-arrow.fb3c35df374fe46ced73f3fb7535227c.svg",
+    "main.cde5bdb0.css.map": "/static/css/main.cde5bdb0.css.map",
+    "main.1e7cf5f3.js.map": "/static/js/main.1e7cf5f3.js.map",
+    "787.5fef94a4.chunk.js.map": "/static/js/787.5fef94a4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cde5bdb0.css",
+    "static/js/main.1e7cf5f3.js"
+  ]
+}

@@ -6,22 +6,9 @@
   justify-content: center;
 }
 
-.movies-card-list-button {
+.movies-card-list__searching-result {
   display: block;
-  margin: 50px auto 80px;
-  border: none;
-  padding: 0;
-  width: 320px;
-  height: 36px;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  opacity: 1;
-  transition: opacity 0.5s;
-  cursor: pointer;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
+  margin: 0 auto;
 }
 
 .movies-card-list-button:hover {
