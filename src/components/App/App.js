@@ -236,6 +236,7 @@ function App() {
 
   useEffect(() => {
     setError('');
+    if (isLoggedIn) getSavedMovies();
   }, [pathname]);
 
   return (
