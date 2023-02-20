@@ -79,9 +79,7 @@ function App() {
     mainApi.register({ name, email, password })
       .then((data) => {
         if (data) {
-          setLoggedIn(true);
-          setCurrentUser(data);
-          history.push('/movies');
+          handleLogin({ email, password})
         }
       })
       .catch(data => data.then(err => setError(err.message)));
@@ -118,6 +116,7 @@ function App() {
     setCurrentUser({});
 
     localStorage.removeItem('jwt');
+    localStorage.removeItem('movies');
     localStorage.removeItem('searchingFilm');
     localStorage.removeItem('filterMovies');
     localStorage.removeItem('isCheckboxChecked');
@@ -138,6 +137,7 @@ function App() {
     moviesApi.getMovies()
       .then((data) => {
         setMovies(data);
+        localStorage.setItem('movies', JSON.stringify(data));
       })
       .catch(err => console.log(err));
   }
@@ -170,7 +170,7 @@ function App() {
       movies.forEach((movie) => {
         if (movie.nameRU.toLowerCase().includes(film.toLowerCase())) newFilterMovies.push(movie);
       })
-
+      // console.log(movies)
       setFilterMovies(newFilterMovies);
       localStorage.setItem('filterMovies', JSON.stringify(newFilterMovies));
     }
@@ -206,6 +206,7 @@ function App() {
       } else {
         setCheckboxChecked(isChecked);
         localStorage.setItem('isCheckboxChecked', isChecked);
+        console.log(searchingFilm)
         handleSearchFilm(searchingFilm);
       }
     }
@@ -225,6 +226,7 @@ function App() {
         .catch(err => console.log(err));
 
       getSavedMovies();
+      setMovies(JSON.parse(localStorage.getItem('movies')));
     }
   };
 
