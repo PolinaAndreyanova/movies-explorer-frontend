@@ -1,11 +1,27 @@
+import { useContext} from 'react';
 import './Profile.css';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { useFormWithValidation } from '../../utils/Validation';
+import validator from 'validator';
 
-function Profile() {
+function Profile(props) {
+  const currentUser = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (validator.isEmail(values.email)) {
+      props.onUpdate({ name: values.name, email: values.email });
+      resetForm();
+    }
+  }
+
   return (
     <section className='profile'>
       <div className='profile__content'>
-        <h1 className='profile__header'>Привет, Виталий!</h1>
-        <form method='get' name='profile-form' className='profile__form' noValidate>
+        <h1 className='profile__header'>Привет, {currentUser.name}!</h1>
+        <form method='get' name='profile-form' className='profile__form' noValidate onSubmit={handleSubmit}>
           <div className='profile__input-content'>
             <label className='profile__input-name'>Имя</label>
             <input
@@ -16,10 +32,11 @@ function Profile() {
               name="name"
               minLength="2"
               maxLength="40"
-              placeholder="Виталий"
+              onChange={handleChange}
+              value={values.name || currentUser.name}
             />
           </div>
-          <p className='profile__input-error'></p>
+          <p className='profile__input-error'>{errors.name}</p>
           <span className='profile__line'></span>
           <div className='profile__input-content'>
             <label className='profile__input-name'>E-mail</label>
@@ -31,12 +48,14 @@ function Profile() {
               name="email"
               minLength="2"
               maxLength="40"
-              placeholder="pochta@mail.ru"
+              onChange={handleChange}
+              value={values.email || currentUser.email}
             />
           </div>
-          <p className='profile__input-error'></p>
-          <button type="submit" className="profile__submit-button">Редактировать</button>
-          <button type="button" className="profile__button">Выйти из аккаунта</button>
+          <p className='profile__input-error'>{errors.email === '' ? ((!validator.isEmail(values.email) ? 'Email невалиден' : '')) : errors.email}</p>
+          <p className='profile__error'>{props.error}</p>
+          <button type="submit" className={`profile__submit-button${!(isValid && validator.isEmail(values.email)) ? ' profile__submit-button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
+          <button type="button" className="profile__button" onClick={props.logout}>Выйти из аккаунта</button>
         </form>
       </div>
     </section>

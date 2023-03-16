@@ -38,7 +38,7 @@
 
 .filter-checkbox__switch:checked::before {
   left: 18px;
-  background-color: #2BE080;;
+  background-color: #2BE080;
 }
 
 .filter-checkbox__description {
