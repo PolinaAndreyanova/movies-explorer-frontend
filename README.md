@@ -1,11 +1,49 @@
-# movies-explorer-frontend
-Frontend дипломного проекта в Яндекс Практикуме
+# Проект: movies-explorer-frontend
 
-## Ссылка на макет
-https://disk.yandex.ru/d/j8VbGFzPrRtG2A
+**Описание**
 
-## Frontend
-https://diploma.polina.students.nomoredomains.rocks
+Frontend часть дипломного проекта в Яндекс Практикуме.
 
-### Pull request
-https://github.com/PolinaAndreyanova/movies-explorer-frontend/pull/2
+**Функциональность**
+* Главная страница - визитная карточка разработчика
+* Авторизация и регистрация пользователей
+* Поиск фильмов по названию
+* Фильтр короткометражек
+* Добавление фильма в избранное
+* Редактирование профиля
+* Переход к просмотру трейлера при клике на постер к фильму
+
+**Стек технологий**
+* HTML5
+* CSS3
+* JavaScript
+* React
+
+### Ссылка на макет: https://disk.yandex.ru/d/j8VbGFzPrRtG2A
+
+**Инструкция по развертыванию**
+1. Скачать проект
+
+1.1 Установить зависимости командой:
+```
+npm i
+```
+1.2 Запустить проект командой:
+```
+npm start
+```
+2. Скачать [бэкенд часть](https://github.com/PolinaAndreyanova/movies-explorer-api) проекта
+
+2.1 Установить зависимости командой:
+```
+npm i
+```
+2.2 Подключиться к БД командой:
+```
+mongod --dbpath=db
+```
+2.3 Запустить проект командой:
+```
+npm run start
+```
+3. Перейти по адресу http://localhost:3000 в браузере

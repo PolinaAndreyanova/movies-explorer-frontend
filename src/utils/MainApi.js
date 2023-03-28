@@ -85,7 +85,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'https://api.polina.students.nomoredomains.rocks',
+  // baseUrl: 'https://api.polina.students.nomoredomains.rocks',
+  baseUrl: 'http://localhost:3001',
 });
 
 export default mainApi;
